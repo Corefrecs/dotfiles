@@ -6,7 +6,7 @@ git clone --bare https://github.com/Corefrecs/dotfiles.git ~/.dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 config checkout 
 ~~~
-If errors occure, backup or delete the conflicting files
+If errors occure, backup or delete the conflicting files  
 Done! Now you can work with the "config" command like:
 ~~~
 config status
