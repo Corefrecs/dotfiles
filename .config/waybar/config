@@ -1,0 +1,139 @@
+// =============================================================================
+//
+// Waybar configuration
+//
+// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+//
+// =============================================================================
+
+{
+    // -------------------------------------------------------------------------
+    // Global configuration
+    // -------------------------------------------------------------------------
+
+    "layer": "top",
+
+    // If height property would be not present, it'd be calculated dynamically
+    "height": 30,
+
+    "modules-left": [
+        "sway/workspaces",
+        "wlr/workspaces",
+        "hyprland/submap",
+    ],
+    "modules-center": [
+        "sway/window",
+        "hyprland/window",
+    ],
+    "modules-right": [
+        "network",
+        "cpu",
+        "temperature",
+        "memory",
+        "bluetooth",
+        "idle_inhibitor",
+        "tray",
+        "clock"
+    ],
+
+    // -------------------------------------------------------------------------
+    // Modules
+    // -------------------------------------------------------------------------
+
+    "clock": {
+        "interval": 60,
+        "format": "  {:%e %b %Y %H:%M}", // Icon: calendar-alt
+        "tooltip": true,
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
+        "on-click": "swaymsg exec \\$calendar"
+    },
+
+    "cpu": {
+        "interval": 1,
+        "format": " {usage}%", // Icon: microchip
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "on-click": "swaymsg exec \"\\$term_float_landscape \\$cpu_mon\""
+    },
+
+    "memory": {
+        "interval": 1,
+        "format": "󰍛 {used}", // Icon: memory
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "on-click": "swaymsg exec \"\\$term_float_landscape \\$mem_mon\""
+    },
+
+    "network": {
+        "interval": 30,
+        "format-wifi": " {essid} ({signalStrength}%)", // Icon: wifi
+        "format-ethernet": "󰈀", // Icon: ethernet
+        "format-disconnected": "⚠ Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}",
+        "on-click": "swaymsg exec \\$term_float_portrait nmtui"
+    },
+
+    "sway/window": {
+        "format": "{}",
+        "max-length": 120
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 120
+    },
+
+    "sway/workspaces": {
+        "all-outputs": false,
+        "disable-scroll": true,
+        "format": "{name}"
+    },
+
+    "wlr/workspaces": {
+        "all-outputs": false,
+        "disable-scroll": true,
+        "format": "{name}"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "temperature": {
+      "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input", //comment if not working
+      "critical-threshold": 90,
+      "interval": 1,
+      "format": "{icon} {temperatureC}°C",
+      "format-icons": [
+          "", // Icon: temperature-empty
+          "", // Icon: temperature-quarter
+          "", // Icon: temperature-half
+          "", // Icon: temperature-three-quarters
+          ""  // Icon: temperature-full
+      ],
+      "tooltip": true
+    },
+
+    "tray": {
+        "icon-size": 21,
+        "spacing": 5
+    },
+
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "󰂲",
+        "interval": 30,
+        "on-click": "blueman-manager",
+        "on-click-right": "rfkill toggle bluetooth",
+        "tooltip-format": "{}"
+    },
+}
+
