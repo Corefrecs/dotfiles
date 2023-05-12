@@ -4,6 +4,7 @@
 ~~~
 git clone --bare https://github.com/Corefrecs/dotfiles.git ~/.dotfiles 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+config config --local status.showUntrackedFiles no
 config checkout 
 ~~~
 If errors occure, backup or delete the conflicting files  
@@ -18,6 +19,7 @@ To commit changes in tracked files, use:
 ~~~
 config commit -am "Update"
 ~~~
+[Reference for using git --bare](https://www.atlassian.com/git/tutorials/dotfiles)
 
 ## Pakages for Sway
 sway swaybg swayidle waybar autotiling-rs wofi foot dolphin kate firefox polkit-kde-agent mako kvantum qt5ct ttf-jetbrains-mono-nerd git base-devel github-cli
